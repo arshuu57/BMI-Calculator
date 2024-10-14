@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bmi calculater </title>
+    <link rel="stylesheet" href="style1.css">
+    
+</head>
+<body>
+        <div class="container">
+            <h1>BMI CALCULATER</h1>
+            <p>height(cm)</p>
+            <input type="text" id="height" >
+            <p>weight(kg)</p>
+            <input type="text" id="weight">
+            <button id="button">  calculate  </button>
+            <div id="result">Result </div>
+        </div>
+        <script>
+            window.onload = () =>{
+  const button=document.querySelector("button");
+  button.addEventListener("click",calculateBmi);
+}
+function calculateBmi(){
+
+    const height=document.querySelector("#height").value;
+    const weight=document.querySelector("#weight").value;
+    const result=document.querySelector("#result");
+
+    if(!height || height < 0 || isNaN(height)){
+        result.innerText = "Please Enter a valid  height";
+        return;
+ }
+   else if(!weight || isNaN(weight) || weight<0){
+    result.innerText = "please enter a valid Weight";
+    return;
+   }
+   const bmi =( weight / ((height * height) /10000)).toFixed(2);
+
+   if(bmi < 18.5)
+   {
+    result.innerText = `Under weight:${bmi} `;
+   }
+   else if(bmi >=18.5 && bmi <24.9){
+    result.innerText = `normal weight:${bmi} `;
+   }
+   else if(bmi >=25.0 && bmi <29.9){
+    result.innerText = `over weight:${bmi} `;
+   }
+   else if(bmi >=30.0 && bmi <34.9){
+    result.innerText = `obesity (class I):${bmi} `;
+   }
+   else if(bmi >=35.0 && bmi <39.9){
+    result.innerText = `obesiy (class II):${bmi} `;
+   }
+   else{
+    result.innerText = `extreme obesity:${bmi} `;
+   }
+}
+
+        </script>
+</body>
+</html>
